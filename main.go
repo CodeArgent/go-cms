@@ -1,6 +1,16 @@
 package main
 
+import (
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
+
 func main() {
-	server := NewAPIService(":3000")
-	server.Run()
+	router := mux.NewRouter()
+
+	log.Println("JSON API server running on port: ", 3000)
+
+	http.ListenAndServe(":3000", router)
 }
