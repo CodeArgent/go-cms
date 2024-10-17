@@ -2,8 +2,19 @@ package utils
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+
+	"github.com/joho/godotenv"
 )
+
+func InitializeEnvs() {
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+}
 
 func WriteJSON(w http.ResponseWriter, status int, v any) error {
 	w.Header().Set("Content-Type", "application/json")
